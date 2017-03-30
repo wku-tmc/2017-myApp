@@ -42,7 +42,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <title>Hi</title>
+    <title>uDiscovery</title>
 </head>
 
 <body>
@@ -51,14 +51,13 @@
 <div data-role="page" id="p1">
 
     <div data-role="header">
-        <h4>Page 1</h4>
+        <h4>uDiscovery</h4>
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
         <form>
-             <a href="#p1" class="ui-btn">Page 1</a>
-             <a href="#p2" class="ui-btn">Page 2</a>
-             <a href="#p3" class="ui-btn">Page 3</a>
+             <a href="#p2" class="ui-btn">Add Event</a>
+             <a href="#p3" class="ui-btn">List events</a>
         </form>
     </div><!-- /content -->
 
@@ -69,8 +68,8 @@
 
 <div data-role="page" id="p2">
 
-    <div data-role="header">
-        <h4>Page 2</h4>
+    <div data-role="header" data-add-back-btn="true">
+        <h4>Add Event</h4>
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
@@ -95,16 +94,19 @@
 
 <div data-role="page" id="p3">
 
-    <div data-role="header">
-        <h4>Page 3</h4>
+    <div data-role="header" data-add-back-btn="true">
+        <h4>List events</h4>
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
-        <form>
-             <a href="#p1" class="ui-btn">Page 1</a>
-             <a href="#p2" class="ui-btn">Page 2</a>
-             <a href="#p3" class="ui-btn">Page 3</a>
-        </form>
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search activity..." data-inset="true">
+                <li><a href="#">Birthday party</a></li>
+                <li><a href="#">Field trip</a></li>
+                <li><a href="#">Class gathering</a></li>
+                <li><a href="#">Lecture ABC</a></li>
+                <li><a href="#">Tutorial</a></li>
+                <li><a href="#">Happy hour</a></li>
+        </ul>
     </div><!-- /content -->
 
     <div data-role="footer" data-position="fixed">
