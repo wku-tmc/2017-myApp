@@ -74,11 +74,18 @@
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
-        <form>
-             <a href="#p1" class="ui-btn">Page 1</a>
-             <a href="#p2" class="ui-btn">Page 2</a>
-             <a href="#p3" class="ui-btn">Page 3</a>
-        </form>
+        <!--code from http://demos.jquerymobile.com/1.4.5/forms/-->
+        <label for="activity">Activity:</label>
+        <input type="text" name="activity" id="activity" required>
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location">
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" required>
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time">
+        <label for="reporter">Reporter:</label>
+        <input type="text" name="report" id="reporter" required>
+        <a href="#" class="ui-shadow ui-btn ui-corner-all" id="btn-addevent">Add event</a>
     </div><!-- /content -->
 
     <div data-role="footer" data-position="fixed">
