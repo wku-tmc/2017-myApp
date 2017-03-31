@@ -23,13 +23,9 @@ myDB = window.sqlitePlugin.openDatabase({ name: "mySQLite.db", location: 'defaul
         });
  });
 
-refreshListViewActivities();
+refreshListViewActivities(); //function call
 
 }
-
-$("#btn-addactivity").click(function() {
-    insertActivity();
-});
 
 function insertActivity() {
     var activity = $("#activity").val();
@@ -52,7 +48,7 @@ function insertActivity() {
     refreshListViewActivities();
 }
 
-
+//function definition
 function refreshListViewActivities() {
 
     $("#listview-activities").empty();
@@ -82,6 +78,38 @@ function refreshListViewActivities() {
         }, null);
     });
 }
+
+$('#form-addactivity').validate({
+    rules: {
+        activity: {
+            required: true
+        },
+        date: {
+            required: true
+        },
+        reporter: {
+            required: true
+        }
+    },
+    messages: {
+        activity: {
+            required: "Please enter the name of the activity"
+        },
+        date: {
+            required: "Please enter the date of the activity"
+        },
+        reporter: {
+            required: "Please enter the name of the reporter"
+        }
+    },
+    errorPlacement: function (error, element) {
+        error.appendTo(element.parent().prev());
+    },
+    submitHandler: function (form) {
+        insertActivity();
+        return false;
+    }
+});
 
 
 
