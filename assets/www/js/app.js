@@ -135,5 +135,29 @@ $('#form-addactivity').validate({
 });
 
 
+$(document).on("pagechange", function() {
+    // Click delete split-button to remove list item
+    $(".delete").off("click").on("click", function() {
+        var listitem = $(this).parent("li");
+        var id = listitem.attr("id");
 
+        deleteActivity(id);       //delete from SQLite
+
+        listitem.remove();      //delete from listview
+        $("#listview-activities").listview("refresh");
+    });
+
+});
+
+
+function deleteActivity(id) {
+    myDB.transaction(function(transaction) {
+        var sql = "DELETE FROM activities where id=?";
+        transaction.executeSql(sql, [id],
+            //On Success
+            function(tx, result) { alert('Delete successfully'); },
+            //On Error
+            function(error) { alert('Could not delete activity'); });
+    });
+}
 
