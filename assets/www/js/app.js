@@ -137,6 +137,7 @@ $('#form-addactivity').validate({
     },
     submitHandler: function (form) {
 //        insertActivity();
+        alert("submit");
         checkDuplicate();
         return false;
     }
