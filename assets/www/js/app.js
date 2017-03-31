@@ -23,6 +23,7 @@ myDB = window.sqlitePlugin.openDatabase({ name: "mySQLite.db", location: 'defaul
         });
  });
 
+refreshListViewActivities();
 
 }
 
@@ -48,7 +49,40 @@ function insertActivity() {
             });
     });
 
+    refreshListViewActivities();
 }
+
+
+function refreshListViewActivities() {
+
+    $("#listview-activities").empty();
+
+    myDB.transaction(function(transaction) {
+        var sql = 'SELECT * FROM activities';
+        transaction.executeSql(sql, [], function(tx, results) {
+            var len = results.rows.length, i;
+//            alert("number = " + len);
+            var output = "";
+            for (i = 0; i < len; i++) {
+                var id = results.rows.item(i).id;
+                output += "<li id=" + id + ">"
+                    + '<a href="#" class="update">'
+                    + " " + id
+                    + " " + results.rows.item(i).activity
+                    + " " + results.rows.item(i).location
+                    + " " + results.rows.item(i).date
+                    + " " + results.rows.item(i).time
+                    + " " + results.rows.item(i).reporter
+                    + "</a>"
+                    + '<a href="#" class="delete">Delete</a>'
+                    + "</li>";
+            }
+
+            $("#listview-activities").append(output).listview("refresh");
+        }, null);
+    });
+}
+
 
 
 
