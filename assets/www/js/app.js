@@ -18,7 +18,6 @@ jQuery.getFeed({
     success: function(feed) {
         for (var i = 0; i < feed.items.length; i++) {
             var item = feed.items[i];
-            console.log("Item " + i + ": " + item.title);
             appendPost(item);
         }
 
@@ -29,24 +28,7 @@ jQuery.getFeed({
     }
 });
 
-
-
-
-
 }
-
-
-
-function getFeed(feed) {
-        for (var i = 0; i < feed.items.length; i++) {
-            var item = feed.items[i];
-            appendPost(item);
-        }
-
-        $("#posts").listview("refresh");
-
-}
-
 
 
 function appendPost(item) {
