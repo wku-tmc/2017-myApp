@@ -1,48 +1,54 @@
 // Wait for Cordova to load
 document.addEventListener('deviceready', onDeviceReady, false);
 
+var myDB = null;
+
 // Cordova is ready
 function onDeviceReady() {
 
-//    alert("onDeviceReady"); //
-//    navigator.notification.alert(
-//        'Welcome to TMC',  // message
-//        alertDismissed,         // callback
-//        'Hi',            // title
-//        'OK'                  // buttonName
-//
-//    );
+//Code adapted from http://phonegappro.com/tutorials/phonegap-sqlite-tutorial-with-example-apache-cordova/
 
-jQuery.getFeed({
-    url: "http://planet.gnome.org/rss20.xml",
-    success: function(feed) {
-        for (var i = 0; i < feed.items.length; i++) {
-            var item = feed.items[i];
-            appendPost(item);
-        }
+//Creating New Database using phonegap with SQLite Plugin
+myDB = window.sqlitePlugin.openDatabase({ name: "mySQLite.db", location: 'default' });
 
-        $("#posts").listview("refresh");
-    },
-    error: function(error) {
-        console.log("error in accessing feed");
-    }
+// Creating New Table using phonegap with SQLite Plugin
+ myDB.transaction(function(transaction) {
+    var sql = 'CREATE TABLE IF NOT EXISTS activities (id integer primary key autoincrement, activity text, location text, date text, time text, reporter text)';
+    transaction.executeSql(sql, [],
+        function(tx, result) {
+            // alert("Table created successfully");
+        },
+        function(error) {
+            alert("Error occurred while creating the table.");
+        });
+ });
+
+
+}
+
+$("#btn-addactivity").click(function() {
+    insertActivity();
 });
 
+function insertActivity() {
+    var activity = $("#activity").val();
+    var location = $("#location").val();
+    var date = $("#date").val();
+    var time = $("#time").val();
+    var reporter = $("#reporter").val();
+
+    myDB.transaction(function(transaction) {
+        var sql = "INSERT INTO activities (activity, location, date, time, reporter) VALUES (?,?,?,?,?)";
+        transaction.executeSql(sql, [activity, location, date, time, reporter]
+            , function(tx, result) {
+                alert('Inserted activity');
+            },
+            function(error) {
+                alert('Could not add activity');
+            });
+    });
+
 }
 
 
-function appendPost(item) {
-//    $("#posts").append("<li>" + item.title + "</li>");
-var link = $("<a />").attr("href", item.link);
-$("<h3 />").append(item.title).appendTo(link);
-$("<p />").append(item.updated).appendTo(link);
-var li = $("<li />").append(link);
-$("#posts").append(li);
-
-}
-
-
-function alertDismissed() {
-    // do something
-}
 
