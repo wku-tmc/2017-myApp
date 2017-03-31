@@ -27,6 +27,27 @@ refreshListViewActivities(); //function call
 
 }
 
+function checkDuplicate() {
+
+    var activity = $("#activity").val();
+
+     myDB.transaction(function(transaction) {
+            var sql = "SELECT * FROM activities WHERE activity=?";
+            transaction.executeSql(sql, [activity]
+                , function(tx, result) {
+                    if(result.rows.length > 0) {
+                        alert("Duplicate activity found!");
+                    } else {
+                        insertActivity();
+                    }
+                },
+                function(error) {
+                    alert('Could not check for duplicate entry');
+                });
+        });
+}
+
+
 function insertActivity() {
     var activity = $("#activity").val();
     var location = $("#location").val();
@@ -46,6 +67,7 @@ function insertActivity() {
     });
 
     refreshListViewActivities();
+
 }
 
 //function definition
@@ -106,7 +128,8 @@ $('#form-addactivity').validate({
         error.appendTo(element.parent().prev());
     },
     submitHandler: function (form) {
-        insertActivity();
+//        insertActivity();
+        checkDuplicate();
         return false;
     }
 });
