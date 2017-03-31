@@ -59,7 +59,15 @@ function insertActivity() {
         var sql = "INSERT INTO activities (activity, location, date, time, reporter) VALUES (?,?,?,?,?)";
         transaction.executeSql(sql, [activity, location, date, time, reporter]
             , function(tx, result) {
-                alert('Inserted activity');
+
+navigator.notification.alert(
+    'Activity "' + activity + '" is added',  // message
+    alertDismissed,         // callback
+    'Add Activity',            // title
+    'OK'                  // buttonName
+);
+                $("#form-addactivity")[0].reset(); //clear the form
+                $.mobile.navigate("#p1"); //go back to landing page
             },
             function(error) {
                 alert('Could not add activity');
@@ -159,5 +167,9 @@ function deleteActivity(id) {
             //On Error
             function(error) { alert('Could not delete activity'); });
     });
+}
+
+function alertDismissed() {
+    // do something
 }
 
