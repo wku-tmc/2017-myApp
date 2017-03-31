@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.jfeed.pack.js"></script>
     <title>uDiscovery</title>
 </head>
 
@@ -55,6 +56,7 @@
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
+        <img src="img/tomjerry.png" alt="">
         <form>
              <a href="#p2" class="ui-btn">Add Event</a>
              <a href="#p3" class="ui-btn">List events</a>
@@ -99,13 +101,13 @@
     </div><!-- /header -->
 
     <div role="main" class="ui-content">
-        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search activity..." data-inset="true">
-                <li><a href="#">Birthday party</a></li>
-                <li><a href="#">Field trip</a></li>
-                <li><a href="#">Class gathering</a></li>
-                <li><a href="#">Lecture ABC</a></li>
-                <li><a href="#">Tutorial</a></li>
-                <li><a href="#">Happy hour</a></li>
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search activity..." data-inset="true" id="posts">
+            <!--    <li><a href="#">Birthday party</a></li>-->
+            <!--    <li><a href="#">Field trip</a></li>-->
+            <!--    <li><a href="#">Class gathering</a></li>-->
+            <!--    <li><a href="#">Lecture ABC</a></li>-->
+            <!--    <li><a href="#">Tutorial</a></li>-->
+            <!--    <li><a href="#">Happy hour</a></li>-->
         </ul>
     </div><!-- /content -->
 
@@ -117,7 +119,7 @@
 
 </body>
     <script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <!--<script type="text/javascript" src="js/index.js"></script>-->
     <!--<script type="text/javascript">-->
         <!--app.initialize();-->
